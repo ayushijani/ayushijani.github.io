@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="pc.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="outerL">
+            <div class="layer1"></div>
+            <div class="layer2"></div>
+            <div class="layer3"></div>
+        </div>
+
+        <div class="logo">
+            <span class="logotext">
+                <span style="color : white; font-size: x-large; font-family: Arial, Helvetica, sans-serif; font-weight: bolder;">SC-205 Project</span>
+            </span>
+        </div>
+        
+
+        <div class="menubar" id="navbar1">
+            <ul class="list">
+                <li class="list-items"><a href="index.html">Home</a></li>
+                <li class="list-items"><a href="Intro.html">Introduction</a></li>
+                <li class="list-items"><a href="Projectcontent.html">Algorithm</a></li>
+                <li class="list-items"><a href="work.html">Project Work</a></li>
+                <li class="list-items"><a href="AboutUs.html">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="menusidebar">
+        <div class="closemenu">
+            <i class="fa fa-times" style="color: white"></i>
+        </div>
+        <div class="menumenubar">
+            <ul class="menulist">
+                <li class="menulistitems"><a href="index.html">Home</a></li>
+                <li class="menulistitems"><a href="Intro.html">Introduction</a></li>
+                <li class="menulistitems"><a href="Projectcontent.html">Algorithm</a></li>
+                <li class="menulistitems"><a href="work.html">Project Work</a></li>
+                <li class="menulistitems"><a href="AboutUs.html">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+
+    <section class="section1">
+        <div class="banner">
+            <div class="caption">
+              <h1>Algorithm</h1> 
+            </div>
+        </div>
+    </section>
+    
+    <div class="pc" style="font-family: Arial, Helvetica, sans-serif;">
+        
+        <p><b style="color:rgb(104,125,241); font-size: xx-large;"> 
+             JPEG Compression Overview</b> <br><br>
+            <img src="JPEGcompression.png" class="center"><br><br>
+
+        </p>
+        <br><br><br>
+
+            <p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">JPEG Encoder
+        </b><br><br>
+            <i>1. Forward DCT</i><br>
+            <i>2. Quantization</i><br>
+            <i>3. Lossless Encoder</i><br>
+            </p>
+ <br><br><br><br>
+
+ <p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">DCT (Discrete Cosine Transform)
+</b></p></b><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;">Images represented as pixels
+</b></b><br><br>
+If we visualize the pixels of an image as a signal it will allow us to access frequency components within an image. Higher frequency components communicate with rapid change in values of pixels while for lower frequency there is a smooth curve formed as a signal.
+</p><br>
+<img src="ImageAsPixels.png"><br>
+<p style="color:white">So JPEG removes less important and less common higher frequency components from an image for the sake of compression.<br><br>
+To gain this information of higher and lower frequencies we use DCT.
+</p>
+<br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;">Forward DCT 
+</b></b><br><br>
+Initially in forward DCT, each pixel value is subtracted by 128 to make the range from -128 to +127.
+If we form a graph of  8 pixels represented by 8 points we can show that as a sum of sample points from cosine waves. This is the representation by DCT.<br><br>
+The DCT takes an input of sample points from our original signal and gives us an output of the same size which is 
+then taken as coefficients which represents the weights of cosine waves of different frequencies. <br><br>
+The wave of 8 inputs is used to represent a row of gradually decreasing pixel values.<br><br>
+The magnitude of the change and the direction of the change can be seen in both the original cosine wave and the DCT coefficient.
+</p><br><br>
+<p style="color:white">Zero frequency cosine wave is just a constant signal which gives the measurements of overall brightness of a set of pixels which means brighter images will have a larger zero coefficient compared to darker or less bright images.
+</p><br>
+<img src="DCT2.png"><br>
+<p style="color:white">Hence the core DCT breaks down how all the 8 patterns contribute to the image as all the sum of these 8 cosine waves represents all the possible combinations of 8 pixel values.
+</p><br>
+<img src="DCT3.png"><br>
+<br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;">2D DCT 
+</b></b><br><br>
+For each 8x8 block, the 2D DCT is applied, transforming the pixel values into a set of frequency coefficients. The resulting coefficients represent different spatial frequencies within the block, with the top-left corner representing the average value of the block and the other coefficients representing variations in the block.
+Mathematically, the 2D DCT is defined as follows:
+</p><br>
+<img src="2D DCT.png">
+<br><br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">Energy Compaction
+</b><br><br>
+Energy Compaction is what allows us to compress images while still retaining high visual quality.<br><br>
+Picking out a random 8 by 8 block from the image and mapping out the magnitude of the coefficients we notice how larger values are in the upper left section corresponding to lower frequency components. Any other 8 by 8 block from the image has the same property. This property is energy compaction.<br><br>
+This happens after DCT as a few larger values get concentrated in a low frequency coefficient.<br><br>
+As we add DCT coefficients slowly the quality of the image matches the original. Till we get to 25% of DCT coefficients, it looks the same as the original image. Almost all the blocks consist of low frequency components and as we are generally less sensitive to high frequency details confirms the working of JPEG compression but we still need to remove high frequency components.
+</p>
+<br><br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">Quantization
+</b><br><br>
+How can we deliberately get rid of information in order to compress an image?<br>
+For that we need to remove high frequency components.<br><br>
+How do we remove high frequency components?<br>
+This is gained through quantization.Mathematically, the 2D DCT is defined as follows:<br>
+For a 8 by 8 matrix of frequency coefficients given by DCT we divide each element of the matrix by a scalar matrix and then round it to an integer.<br><br>
+The scalar matrix which is a quantization table is provided by the JPEG standard from visual experiments which defines the quality of JPEG compression.<br><br>
+This quantization table is available for both luma and chroma channels.<br><br>
+In the scalar there are larger values at the bottom-right so in the quantized matrix it will have zeros in the higher frequency components.
+</p>
+<br><br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">Run Length Encoding
+</b><br><br>
+Run-length encoding is a form of lossless data compression in which runs of data (sequences in which the same data value occurs in many consecutive data elements) are stored as a single data value and count, rather than as the original run.<br><br>
+This is most useful on data that contains many such runs, such as image compression.<br><br>
+Also one of the main reasons to use RLE is, after  quantization we end up with a lot of zeros in the high frequency. We rearrange the coefficients in a zig-zag order from top right to bottom left order to exploit redundancy, and store the information more efficiently.
+</p><br>
+<img src="RLE.png">
+<br><br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">Huffman Encoding
+</b><br><br>
+While the run-length encoding (RLE) technique efficiently represents consecutive zeros, the resulting data still contains variable-length codes, which are not optimal for further compression. <br><br>
+To address this, Huffman coding is employed to convert the variable-length codes into fixed-length codes known as Huffman codes.<br><br>
+Huffman code is used as more frequent data can be used with fewer bits. Some triplet values are more frequent than others making it easy to compress. JPEG encodes the signs of coefficients as well as the 8x8 blocks. It even encodes the top-left coefficients separate from the other coefficients as after decoding those values stays somewhat the same as that of the original matrix of both luma and chroma channels.
+</p>
+<br>
+<img src="Huffman.png">
+<br><br><br><br>
+
+    <p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">JPEG Decoder
+    </b><br><br>
+        <i>1. Loseless Decoder</i><br>
+        <i>2. Dequantizer</i><br>
+        <i>3. Inverse DCT</i><br>
+        </p>
+<br><br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">Lossless Decoder
+</b><br><br>
+JPEG decoder uses all the Huffman code files to get back all the quantized DCT coefficients that were encoded by Huffman encoding.
+</p>
+<br><br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">Dequantization
+</b><br><br>
+<img src="Dequantization.png"><br>
+For decoding, we multiply the matrix of frequency coefficients with the same scalar matrix that we divided by our matrix of frequency coefficients, element by element to gain the final coefficient matrix which will be different from the original matrix. <br><br>
+Here there is intentional loss of information but lower frequency components are retained.
+</p>
+<br><br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: xx-large;">Inverse DCT
+</b><br><br>
+<img src="InverseDCT1.png"><br>
+The invertibility of DCT also plays a role in the JPEG compression. The signals converted to coefficient representation of weights associated with cosine waves can be reversed as signals can be formed from the coefficient representation. This is the inverse DCT where we get back the exact signal. Due to the orthogonality the inverse is just the transpose of the original matrix.<br><br>
+Inverse DCT sums up the weighted combination of cosine waves and gets the original signal back.
+</p>
+<br><br><br><br>
+
+<p style="color:white">
+    <i>
+       References taken from: <br>
+       <a href="https://www.baeldung.com/cs/jpeg-compression">https://www.baeldung.com/cs/jpeg-compression </a><br>
+       <a href="https://en.wikipedia.org/wiki/Run-length_encoding">https://en.wikipedia.org/wiki/Run-length_encoding</a><br>
+       <a href="https://fairyonice.github.io/2D-DCT.html">https://fairyonice.github.io/2D-DCT.html </a> <br><br>
+
+       Images taken from: <br>
+       <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.graphicsmill.com%2Fdocs%2Fgm%2Fworking-with-jpeg.htm&psig=AOvVaw2rR_HnyhGszlPMjul16mJ3&ust=1685266570848000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNidl52Zlf8CFQAAAAAdAAAAABAE">graphicsmill.com</a><br>
+       <a href="https://www.youtube.com/watch?v=0me3guauqOU">https://www.youtube.com/watch?v=0me3guauqOU </a><br>
+       <a href="https://www.youtube.com/watch?v=fkz2-JVaYDk">https://www.youtube.com/watch?v=fkz2-JVaYDk </a>
+       
+   </i>
+</p>
+    
+</div>
+    
+</body>
+</html>

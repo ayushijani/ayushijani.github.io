@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="intro.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="outerL">
+            <div class="layer1"></div>
+            <div class="layer2"></div>
+            <div class="layer3"></div>
+        </div>
+
+        <div class="logo">
+            <span class="logotext">
+                <span style="color : white; font-size: x-large; font-family: Arial, Helvetica, sans-serif; font-weight: bolder;">SC-205 Project</span>
+            </span>
+        </div>
+
+        <div class="menubar">
+            <ul class="list">
+                <li class="list-items"><a href="index.html">Home</a></li>
+                <li class="list-items"><a href="Intro.html">Introduction</a></li>
+                <li class="list-items"><a href="Projectcontent.html">Algorithm</a></li>
+                <li class="list-items"><a href="work.html">Project Work</a></li>
+                <li class="list-items"><a href="AboutUs.html">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="menusidebar">
+        <div class="closemenu">
+            <i class="fa fa-times" style="color: white"></i>
+        </div>
+        <div class="menumenubar">
+            <ul class="menulist">
+                <li class="menulistitems"><a href="index.html">Home</a></li>
+                <li class="menulistitems"><a href="Intro.html">Introduction</a></li>
+                <li class="menulistitems"><a href="Projectcontent.html">Algorithm</a></li>
+                <li class="menulistitems"><a href="work.html">Project Work</a></li>
+                <li class="menulistitems"><a href="AboutUs.html">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+
+    <section class="section1">
+        <div class="banner">
+            <div class="caption">
+              <h1>Introduction</h1> 
+            </div>
+        </div>
+    </section>
+
+<div class="intro" style="font-family: Arial, Helvetica, sans-serif;">
+       <p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;"> How do computers represent images? </b><br><br>
+Answer is, Standard color space that computers use is the RGB Model. Every pixel stores 3 values with values ranging from 0-255 (higher values representing larger weights of respective colors).
+Each color is represented in 8 bits so total of 24 bits (8*3) per pixel or 3 byte/pixel.</p>
+<br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;"> How to calculate the size of an uncompressed image?
+</b><br><br>
+Consider an image of 1920 x 1080 format. So total pixels are 1920 x 1080 = 20,73,600 pixels. Now each pixel takes 3 bytes of memory so 20,73,600 pixels takes around (20,73,600 * 3) around 6.2megabytes of storage. Using JPEG compression, one can reduce their image size by 5% of the original size without distorting the original image.</p>
+<br><br><br>
+
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;"> Lossless Compression
+</b><br><br>
+In a lossless compression algorithm the data is again restored after decoding. It means the image shown at the end is the same as the original with no loss of data in the process.</p>
+    <br><br><br>
+           
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;"> Lossy Compression
+</b><br><br>
+RGB Colour representation -> Encoder -> .jpg image -> Decoder -> Picture displayed on computer.</p><br>
+<img src="Lossy compression.png"><br>
+
+<p style="color:white">(One point to note here is that the final decoded image is not the same as the original uncompressed image.)
+</p><br><br>
+
+<p style="color:white">JPEG deliberately loses information. That is why this is called lossy compression. To achieve a 5% compression level, we need to lose some information.</p>
+<br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;"> YCbCr (Another type of color space)
+</b><br><br>
+Y for Y-axis. It measures Luma or brightness of our image.<br><br>
+Cb stands for Chroma blue and Cr for Chroma red. They encode the colors.<br><br>
+JPEG using color space gives us direct access to the part of color that our eyes perceive the best. The idea is to compress the image by sampling CbCr components and keeping all the Y (Luma) components (As human eyes are more sensitive to brightness than color). This technique is known as Chroma Down-sampling/Chroma-SubSampling.
+</p>
+<br><br><br>
+
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;">Chroma Downsampling
+</b><br><br>
+Main idea is to reduce the size of the image by decreasing CbCr components.<br><br>
+In Chroma DownSampling 4:2:0, consider an 8X8 pixel image, we take 2X2 blocks from it and simply average the group of pixels to get a shared value of the 4 pixels in one pixel. Averaging is the main part of down-sampling.<br><br>
+</p><br>
+<img src="Downsampling 420.png">
+<br><br><br>
+
+<p style="color:white"><b style="color:rgb(104,125,241); font-size: x-large;">Chroma Subsampling
+</b><br><br>
+It follows the similar procedure as in down-sampling, but instead of averaging the left top most value is the pixel value for the whole 2X2 block. </p>
+<br><br>
+<div style="overflow-x:auto; font-family: Arial, Helvetica, sans-serif; color: black;">
+<table style="background-color: white;">
+   <tr> 
+    <th></th>
+    <th>Y(Luma Component)</th>
+    <th>Cb</th>
+    <th>Cr</th>
+   </tr>
+
+   <tr>
+    <td>Pixel Count</td>
+    <td>64/64(8x8) with no loss</td>
+    <td>16/64(grounded in 2x2 pixel) so 64/4 = 16 only 16 pixels remain</td>
+    <td>16/64(grouped in 2x2 pixel) so 64/4 = 16 only 16 pixels remain</td>
+  </tr>
+  <tr>
+    <td>Pixel Ratio</td>
+    <td>100 % (no retention)</td>
+    <td>25%</td>
+    <td>25%</td>
+  </tr>
+</table>
+</div>
+<br><br><br>
+<img src="Subsampling.png"><br>
+<p style="color:white">Final total size of the image as compared to the original = 1/3 + 1/12 + 1/12 = 6/12 (50%) of original. Hence, currently the image size is reduced by half of the original.<br><br>
+Since we talked about 5% of the original image size, here comes the use of DCT (Discrete Cosine Theory).
+</p>
+<br><br><br>
+
+
+<p style="color:white">
+    <i>
+       References taken from: <br>
+       <a href="https://www.baeldung.com/cs/jpeg-compression">https://www.baeldung.com/cs/jpeg-compression </a> <br><br>
+
+       Images taken from: <br>
+       <a href="https://www.youtube.com/watch?v=0me3guauqOU">https://www.youtube.com/watch?v=0me3guauqOU </a> <br>
+       <a href="https://www.youtube.com/watch?v=fkz2-JVaYDk">https://www.youtube.com/watch?v=fkz2-JVaYDk </a>
+       
+   </i>
+</p>
+
+
+
+
+               
+
+
+</div>
+
+   
+    
+</body>
+</html>
